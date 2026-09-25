@@ -1,0 +1,4 @@
+# Ignore cloned upstream repos (not part of this skill)
+awesome-harness-engineering/
+rust-skills/
+rust-skills-actionbook/
