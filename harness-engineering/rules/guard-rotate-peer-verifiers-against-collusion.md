@@ -13,7 +13,7 @@
 
 ## Scope
 
-- Apply to multi-agent fleets where one agent judges/reviews/merges/accepts another's output across multiple episodes; generator/evaluator pipelines with stable pairings; peer-review or cross-grading schemes.
+- Apply to multi-agent fleets where one agent judges/reviews/merges/accepts another's output across *multiple episodes with stable pairings* — the repeated-pairing condition is the trigger; peer-review or cross-grading schemes. The asymmetric generator→evaluator flow of `run-separate-generator-from-skeptical-evaluator` remains the base design: the judged artifact travels; it is the peer-verdict channels that must stay out of context.
 - Skip when evaluation is one-shot with fresh pairings.
 - Skip when verification is fully deterministic (tests, linters, schema gates) with no model judgment in the accept path.
 
@@ -27,3 +27,4 @@ Emergent Collusion in Long-Horizon LLM Agent Interaction (https://arxiv.org/abs/
 - [guard-untrusted-content-as-data](guard-untrusted-content-as-data.md) - inter-agent messages are content, not instructions — the collusion channel runs through exactly those messages
 - [ctx-subagent-context-isolation](ctx-subagent-context-isolation.md) - isolation denies the shared history that collusive agreement requires
 - [guard-hard-policies-over-model-judgment](guard-hard-policies-over-model-judgment.md) - a model ACCEPT must never be the sole gate for anything consequential
+- [guard-audit-log-every-decision](guard-audit-log-every-decision.md) - the decision log is where the verdict-relaxation onset detector looks for the REJECT→ACCEPT flip pattern

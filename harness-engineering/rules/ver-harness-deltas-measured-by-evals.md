@@ -10,7 +10,7 @@
 
 - Compress the optimization space to three knob families — system prompt, tools, middleware — and evaluate each change against the benchmark (e.g. reasoning-budget "sandwich": xhigh planning, high build, xhigh verification scored 66.5% vs 53.9% for all-xhigh, which timed out).
 
-- Tailor the harness per model: the same harness scored competitively-but-worse on Claude Opus 4.6 because the improvement loop hadn't been run for it — principles generalize, but iterations are model-specific.
+- Tailor the harness per model — principles generalize, but iterations are model-specific (the same harness scored competitively-but-worse on Claude Opus 4.6 because the improvement loop hadn't been run for it). The full per-model decision — re-run the loop vs transplant, with measured transplant variance — is now [run-harness-optimization-per-model](run-harness-optimization-per-model.md).
 
 - Frameworks make this loop runnable: Harbor orchestrates sandboxes, agent interaction, verification, and scoring; Inspect provides task/dataset/solver/scorer decomposition, sandboxes, a log viewer, and offline re-scoring of saved logs so harness changes can be re-evaluated without re-running agents.
 
@@ -32,3 +32,5 @@ LangChain 'Improving Deep Agents with harness engineering' (https://blog.langcha
 - [eval-capability-vs-regression-suites](eval-capability-vs-regression-suites.md) - the regression suite is what catches a harness change that fixes one task and regresses others
 - [eval-trace-to-deterministic-checks](eval-trace-to-deterministic-checks.md) - the trace analysis that proposes which harness change to try
 - [obs-runtime-config-first-class-variable](obs-runtime-config-first-class-variable.md) - infra noise is the confound to hold fixed while measuring a harness delta
+- [run-harness-optimization-per-model](run-harness-optimization-per-model.md) - the per-model keying decision this rule's evidence points to; that rule owns it with measured transplant variance
+- [ver-self-edit-non-regression-gate](ver-self-edit-non-regression-gate.md) - the acceptance criterion for unattended loops; this rule's human verification governs human-in-the-loop changes

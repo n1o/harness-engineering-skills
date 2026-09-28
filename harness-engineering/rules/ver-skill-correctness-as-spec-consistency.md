@@ -29,3 +29,4 @@ SkillSpec: Intent-Masked Specification Reasoning for Agent Skill Correctness (ht
 - [eval-trace-to-deterministic-checks](eval-trace-to-deterministic-checks.md) - deterministic checks over captured traces; here the checkable object is declared-vs-encoded behavior
 - [tool-eval-driven-tool-iteration](tool-eval-driven-tool-iteration.md) - eval-driven iteration for tool behavior; this rule is the correctness gate that should run before those evals
 - [ctx-skill-compactness-over-completeness](ctx-skill-compactness-over-completeness.md) - compactness and consistency compose: a compact spec is easier to keep consistent with the scripts
+- [ver-self-verification-before-exit](ver-self-verification-before-exit.md) - the same epistemic norm ("never by reading the prose" vs agents that "read their own code, say looks ok, and stop") applied to live work output; this rule applies it to skill prose/code drift

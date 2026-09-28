@@ -24,5 +24,6 @@ Auto-RecSys (https://arxiv.org/abs/2609.10922), MemoHarness (https://arxiv.org/a
 
 - [struct-externalize-loop-state-files](struct-externalize-loop-state-files.md) - working state; this ledger is the failure memory of that loop
 - [ctx-keep-failures-in-context](ctx-keep-failures-in-context.md) - keeps failure evidence in-window; this rule persists it across loops and sessions
-- [ctx-memory-curation-scored-forgetting](ctx-memory-curation-scored-forgetting.md) - the pruning policy that keeps this ledger from degrading into noise
-- [ops-quarantine-poison-dont-recirculate](ops-quarantine-poison-dont-recirculate.md) - runtime error quarantine; this rule is the design-level dead-end analogue
+- [ctx-memory-curation-scored-forgetting](ctx-memory-curation-scored-forgetting.md) - prunes memory stores by importance score — but NOT this ledger (see its Scope carve-out): dead ends leave only when their preconditions change
+- [struct-adaptive-harness-per-task-retrieval](struct-adaptive-harness-per-task-retrieval.md) - this ledger is the failure half of the bank that rule retrieves from
+- [ctx-evolved-knowledge-gated-by-validation](ctx-evolved-knowledge-gated-by-validation.md) - its rejected-candidate log is this ledger applied to knowledge entries

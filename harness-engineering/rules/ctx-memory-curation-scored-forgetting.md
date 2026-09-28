@@ -15,6 +15,7 @@
 
 - Apply to persistent agent memory stores that grow across sessions/tasks (preference stores, experience banks, project knowledge bases); any harness deciding what to keep, merge, or delete.
 - Skip for session-scoped scratch state deleted wholesale at reset.
+- Carve out dead-end/failure ledgers ([run-dead-end-ledger-scar-tissue](run-dead-end-ledger-scar-tissue.md)): their entries must be pruned only when their preconditions change, never by importance score — old, rarely-accessed dead ends score lowest on recency and access frequency but are exactly the record the loop must never re-propose.
 - Skip for retention-mandated records — audit trails where deletion is prohibited (see `guard-audit-log-every-decision`); score and archive them separately.
 - In-window compaction is a different mechanism (recall/precision over live context) — covered by the compaction rules.
 
@@ -28,4 +29,5 @@ Selective Forgetting (https://arxiv.org/abs/2608.28978); MemHarness (https://arx
 - [run-entropy-garbage-collection-cadence](run-entropy-garbage-collection-cadence.md) - GC for repo code patterns; this rule is GC for the memory store, with an explicit scoring function
 - [ctx-deterministic-tools-before-llm](ctx-deterministic-tools-before-llm.md) - the general principle; this rule applies it to memory bookkeeping with measured thresholds
 - [ctx-compaction-recall-then-precision](ctx-compaction-recall-then-precision.md) - in-window compaction order; this rule is the store-level complement: once recall is captured durably, prune by measured importance
-- [ops-quarantine-poison-dont-recirculate](ops-quarantine-poison-dont-recirculate.md) - classify before retrying for a fleet; importance scoring is the memory-side analogue: score before keeping
+- [ops-quarantine-poison-dont-recirculate](ops-quarantine-poison-dont-recirculate.md) - classifying errors before retrying is per-item runtime handling; this rule is store hygiene on a cadence — don't import quarantine's bounded-attempts semantics into retention
+- [run-dead-end-ledger-scar-tissue](run-dead-end-ledger-scar-tissue.md) - the ledger this rule explicitly does NOT prune by score (see Scope carve-out)

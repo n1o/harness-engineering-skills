@@ -28,3 +28,4 @@ LLM-as-Code: Agentic Programming for Agent Harness (https://arxiv.org/abs/2606.1
 - [prin-simplest-solution-that-works](prin-simplest-solution-that-works.md) - start with direct calls; graduate to a coded workflow only when reliability evidence demands it
 - [ctx-subagent-context-isolation](ctx-subagent-context-isolation.md) - the DAG-of-calls with depth-scoped context is a concrete implementation of that isolation
 - [struct-bounded-single-task-loop](struct-bounded-single-task-loop.md) - the bounded outer loop is the minimal coded-control-flow case; this rule generalizes it to branches and recursion
+- [struct-harness-as-declared-config](struct-harness-as-declared-config.md) - the coded control flow is itself the declared, diffable harness artifact — code, not yaml, can still be the declared config surface

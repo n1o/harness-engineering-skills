@@ -26,3 +26,5 @@ Self-Harness (https://arxiv.org/abs/2606.09498), HarnessDev (https://arxiv.org/a
 - [ver-harness-deltas-measured-by-evals](ver-harness-deltas-measured-by-evals.md) - the measurement protocol underlying per-model re-optimization
 - [obs-runtime-config-first-class-variable](obs-runtime-config-first-class-variable.md) - infrastructure config as an experimental variable of comparable magnitude
 - [eval-pin-harness-with-model](eval-pin-harness-with-model.md) - the reporting duty on the other side: pin (model, harness) pairs in every eval
+
+- [ver-self-edit-non-regression-gate](ver-self-edit-non-regression-gate.md) - every edit this per-model loop proposes must pass that gate before acceptance

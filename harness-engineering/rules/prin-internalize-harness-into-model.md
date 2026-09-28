@@ -13,6 +13,7 @@
 ## Scope
 
 - Apply when you control model training (SFT/LoRA) or shipped default prompts, and a mechanism is validated, stable, and exercised on every run.
+- Boundary with [struct-adaptive-harness-per-task-retrieval](struct-adaptive-harness-per-task-retrieval.md): that rule serves per-task harness variants from a runtime experience bank — the right answer when you cannot retrain and the task mix is heterogeneous. This rule is the next step once a mechanism is stable and you do control training: distill the common core into weights and retrieve only the residual per-task variants. Internalization supersedes the bank for the mechanisms it absorbs; it does not forbid banks where retraining is impossible.
 - Skip when there is no training budget.
 - Never internalize environment-specific policy — sandboxing, budgets, hard gates stay deterministic and out of the weights.
 - Skip when the mechanism is changing faster than a training cycle can follow.
@@ -27,3 +28,5 @@ Harness-Zero: Harness Distillation via Agent-as-Harness (https://arxiv.org/abs/2
 - [ver-harness-deltas-measured-by-evals](ver-harness-deltas-measured-by-evals.md) - the validation that must precede internalization
 - [ctx-deterministic-tools-before-llm](ctx-deterministic-tools-before-llm.md) - boundary: deterministic enforcement stays deterministic; weights only absorb probabilistic behavior
 - [guard-hard-policies-over-model-judgment](guard-hard-policies-over-model-judgment.md) - same boundary on the safety side
+- [struct-adaptive-harness-per-task-retrieval](struct-adaptive-harness-per-task-retrieval.md) - the runtime-bank alternative when you cannot retrain; they compose — distill the stable core, retrieve residual variants
+- [ver-layered-verification-stack](ver-layered-verification-stack.md) - boundary: guardrails that models outgrow are removed per run-harness-component-attrition, never distilled; only stable behavioral patterns are internalized

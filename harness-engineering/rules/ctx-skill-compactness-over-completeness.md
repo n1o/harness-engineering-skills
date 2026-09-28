@@ -29,3 +29,4 @@ SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks (https
 - [ctx-working-memory-budget](ctx-working-memory-budget.md) - skills consume the attention budget; the +0.7pp comprehensive-skill result is what losing that budget to padding looks like
 - [ctx-progressive-disclosure-pointers](ctx-progressive-disclosure-pointers.md) - the mechanism that keeps compact skills sufficient: pointers into detail instead of inlined detail
 - [ver-skill-correctness-as-spec-consistency](ver-skill-correctness-as-spec-consistency.md) - a compact spec is also easier to keep consistent with the encoded scripts
+- [tool-few-purposeful-tools](tool-few-purposeful-tools.md) - the same few-purposeful-units norm for the callable tool surface designed once; this rule covers per-task skill attachment (the SkillsBench count ablation)
