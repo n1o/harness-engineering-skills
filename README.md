@@ -33,7 +33,44 @@ harness-engineering/
 | MEDIUM | Operational Autonomy | `ops-` | 8 | Spend rails, ledgers, retry budgets, circuit breakers, idempotency |
 | MEDIUM | Operating Principles | `prin-` | 9 | Harness-first thinking, humans on the loop, smallest-workable agents, control flow in code, internalization |
 
-Sixteen rules are distilled from 2026 peer-reviewed agent research (self-evolving harnesses, agent memory, skills benchmarks, multi-agent collusion) via their Dissecting AI lecture summaries — see [harness-engineering/PAPERS.md](harness-engineering/PAPERS.md) for the paper→rule provenance map.
+Sixteen rules are distilled from 2026 peer-reviewed agent research (self-evolving harnesses, agent memory, skills benchmarks, multi-agent collusion) via their Dissecting AI lecture summaries — see [harness-engineering/PAPERS.md](harness-engineering/PAPERS.md) for the paper→rule provenance map. The papers:
+
+### Research papers cited
+
+**Self-improving harnesses**
+
+- Zhang, H., Zhang, S., Li, K., et al. (2026). *Self-Harness: Harnesses That Improve Themselves.* arXiv:2606.09498. https://arxiv.org/abs/2606.09498 → [ver-self-edit-non-regression-gate](harness-engineering/rules/ver-self-edit-non-regression-gate.md), [run-harness-optimization-per-model](harness-engineering/rules/run-harness-optimization-per-model.md), [run-dead-end-ledger-scar-tissue](harness-engineering/rules/run-dead-end-ledger-scar-tissue.md)
+- Huang, L., Yang, C., Zhou, H., et al. (2026). *Evo-Bench: Can Language Models Improve Agent Harness?* arXiv:2608.09096. https://arxiv.org/abs/2608.09096 → [ver-self-edit-non-regression-gate](harness-engineering/rules/ver-self-edit-non-regression-gate.md)
+- Zhang, J., Hu, S., Lu, C., Lange, R., & Clune, J. (2025). *Darwin Gödel Machine: Open-Ended Evolution of Self-Improving Agents.* arXiv:2505.22954. https://arxiv.org/abs/2505.22954 → [ver-self-edit-non-regression-gate](harness-engineering/rules/ver-self-edit-non-regression-gate.md), [run-dead-end-ledger-scar-tissue](harness-engineering/rules/run-dead-end-ledger-scar-tissue.md)
+- Park, S., Kim, W., Tan, R., et al. (2026). *AutoSaddler: Automatic Harness Optimization with Durable Updates from Agent Execution Traces.* arXiv:2608.23041. https://arxiv.org/abs/2608.23041 → [ver-self-edit-non-regression-gate](harness-engineering/rules/ver-self-edit-non-regression-gate.md)
+- Huang, Y., Wang, W., Bao, H., et al. (2026). *MemoHarness: Agent Harnesses That Learn from Experience.* arXiv:2607.14159. https://arxiv.org/abs/2607.14159 → [struct-adaptive-harness-per-task-retrieval](harness-engineering/rules/struct-adaptive-harness-per-task-retrieval.md), [run-harness-optimization-per-model](harness-engineering/rules/run-harness-optimization-per-model.md), [run-dead-end-ledger-scar-tissue](harness-engineering/rules/run-dead-end-ledger-scar-tissue.md), [prin-internalize-harness-into-model](harness-engineering/rules/prin-internalize-harness-into-model.md)
+- Liu, H., Ye, T., Gao, S., et al. (2026). *SoL-Pi: Recursively Scaling Auto-Research Loops for Efficient Agent Harness.* arXiv:2609.20519. https://arxiv.org/abs/2609.20519 → [run-harness-optimization-per-model](harness-engineering/rules/run-harness-optimization-per-model.md)
+- Ye, H., Lu, Y., Dong, H., Su, Z., & Song, G. (2026). *Harness-Zero: Harness Distillation via Agent-as-Harness.* arXiv:2609.24974. https://arxiv.org/abs/2609.24974 → [prin-internalize-harness-into-model](harness-engineering/rules/prin-internalize-harness-into-model.md)
+- Zhang, G., Lu, L., Xie, F., et al. (2026). *JIT-Agent: Scaling Harness Intelligence via Just-in-Time Harness Evolution.* arXiv:2608.25593. https://arxiv.org/abs/2608.25593 → [struct-adaptive-harness-per-task-retrieval](harness-engineering/rules/struct-adaptive-harness-per-task-retrieval.md)
+- Li, M., Li, D., Ning, X., et al. (2026). *Auto-RecSys: Harnessing Autonomous Research Agents for Industry-Scale Recommender System.* arXiv:2609.10922. https://arxiv.org/abs/2609.10922 → [run-dead-end-ledger-scar-tissue](harness-engineering/rules/run-dead-end-ledger-scar-tissue.md)
+- Wu, Y., Zhang, J., Shi, J., et al. (2026). *HarnessDev: Can LLMs Create and Evolve Their Own Agent Harness?* arXiv:2609.01437. https://arxiv.org/abs/2609.01437 → [run-harness-optimization-per-model](harness-engineering/rules/run-harness-optimization-per-model.md)
+
+**Agent memory**
+
+- Huang, W.-C., Zhang, W., Wu, Y., et al. (2026). *Harness the Memory: A Holistic Evaluation of Memory Substrates in Memory Agents.* arXiv:2608.15008. https://arxiv.org/abs/2608.15008 → [ctx-memory-substrate-routing](harness-engineering/rules/ctx-memory-substrate-routing.md), [ctx-memory-curation-scored-forgetting](harness-engineering/rules/ctx-memory-curation-scored-forgetting.md)
+- Wu, R., Fu, D., Wen, L., et al. (2026). *MemHarness: Memory Is Reconstructed, Not Replayed.* arXiv:2607.28272. https://arxiv.org/abs/2607.28272 → [ctx-memory-reconstruct-not-replay](harness-engineering/rules/ctx-memory-reconstruct-not-replay.md), [ctx-memory-curation-scored-forgetting](harness-engineering/rules/ctx-memory-curation-scored-forgetting.md)
+- Rusu, T., Khanzadeh, S., & Alalfi, M. (2026). *Selective Forgetting: A Graph-Based Memory Framework for Long-Term LLM Agents.* arXiv:2608.28978. https://arxiv.org/abs/2608.28978 → [ctx-memory-curation-scored-forgetting](harness-engineering/rules/ctx-memory-curation-scored-forgetting.md), [ctx-memory-substrate-routing](harness-engineering/rules/ctx-memory-substrate-routing.md)
+- Jiang, D., Li, Y., & Li, B. (2026). *Jev-Mem: System-One-Controlled Agentic Memory for Efficient AI Agents.* arXiv:2609.23986. https://arxiv.org/abs/2609.23986 → [ctx-memory-curation-scored-forgetting](harness-engineering/rules/ctx-memory-curation-scored-forgetting.md)
+- Chong, M., Zhang, S., Fan, J., & Du, X. (2026). *EvoOntology: A Self-Evolving Ontology Layer for Data Agents.* arXiv:2609.15779. https://arxiv.org/abs/2609.15779 → [ctx-evolved-knowledge-gated-by-validation](harness-engineering/rules/ctx-evolved-knowledge-gated-by-validation.md)
+
+**Skills, scaffolds, and harness formalization**
+
+- Vats, N., & Golev, O. (2026). *The Scaffold Effect in Coding Agents: Harness Choice as a Hidden Variable in Coding-Agent Evaluation.* arXiv:2607.22585. https://arxiv.org/abs/2607.22585 → [eval-pin-harness-with-model](harness-engineering/rules/eval-pin-harness-with-model.md)
+- Li, X., Liu, Y., Chen, W., et al. (2026). *SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks.* arXiv:2602.12670. https://arxiv.org/abs/2602.12670 → [eval-pin-harness-with-model](harness-engineering/rules/eval-pin-harness-with-model.md), [ctx-skill-compactness-over-completeness](harness-engineering/rules/ctx-skill-compactness-over-completeness.md)
+- Zhang, Y., Kang, B., Yang, Y., Duan, Z., Ye, Z., & Yang, S. (2026). *SkillSpec: Intent-Masked Specification Reasoning for Agent Skill Correctness.* arXiv:2609.06052. https://arxiv.org/abs/2609.06052 → [ver-skill-correctness-as-spec-consistency](harness-engineering/rules/ver-skill-correctness-as-spec-consistency.md)
+- Qi, J., Fu, Z., Gao, J., Zhang, W., Yan, H., Wu, X., & Zhao, X. (2026). *LLM-as-Code: Agentic Programming for Agent Harness.* arXiv:2606.15874. https://arxiv.org/abs/2606.15874 → [prin-control-flow-in-code-not-model](harness-engineering/rules/prin-control-flow-in-code-not-model.md)
+
+**Multi-agent interaction, oversight, and human-facing surfaces**
+
+- Shi, X., Zhang, Y., & Yang, D. (2026). *Emergent Collusion in Long-Horizon LLM Agent Interaction.* arXiv:2609.24967. https://arxiv.org/abs/2609.24967 → [guard-rotate-peer-verifiers-against-collusion](harness-engineering/rules/guard-rotate-peer-verifiers-against-collusion.md)
+- Mitchell, M., Ghosh, A., & Passi, S. (2026). *AI Agents Push Humans Out of the Loop.* arXiv:2608.23642. https://arxiv.org/abs/2608.23642 → [eval-canary-injections-verify-human-oversight](harness-engineering/rules/eval-canary-injections-verify-human-oversight.md)
+- Li, X., Jiang, N., & Selvaraj, J. (2025). *Portal UX Agent — A Plug-and-Play Engine for Rendering UIs from Natural Language Specifications.* arXiv:2511.00843. https://arxiv.org/abs/2511.00843 → [struct-generative-ui-schema-bounded](harness-engineering/rules/struct-generative-ui-schema-bounded.md)
+- Kong, F., Zheng, C., Zhuang, M., et al. (2026). *Macaron-A2UI: A Model for Generative UI in Personal Agents.* arXiv:2605.24830. https://arxiv.org/abs/2605.24830 → [struct-generative-ui-schema-bounded](harness-engineering/rules/struct-generative-ui-schema-bounded.md)
 
 ## How an agent uses it
 
