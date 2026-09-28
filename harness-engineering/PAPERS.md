@@ -63,10 +63,12 @@ Every listed paper was read and adjudicated: it either feeds at least one rule b
 
 | Paper | Pipeline state |
 |---|---|
-| RRSI: Regularized Recursive Self-Improvement of Agent Harnesses (arXiv 2609.24972) | summary step in error in the DA pipeline — retry queued; revisit once processable |
-| AgentSPEX: An Agent SPecification and EXecution Language (arXiv 2604.13346) | no summary in the DA pipeline |
+| RRSI: Regularized Recursive Self-Improvement of Agent Harnesses (arXiv 2609.24972) | summarization LLM API error (400) — retried via `dai paper retry` (retry_count 1); revisit once the pipeline completes |
+| AgentSPEX: An Agent SPecification and EXecution Language (arXiv 2604.13346) | validation error (monthly page quota exceeded) — retried (retry_count 2); revisit once the pipeline completes |
 | Building Open-Ended Embodied Agent via Language-Policy Bidirectional Adaptation (arXiv 2401.00006) | parsed only; not public |
 
-## Data-integrity note
+## Data-integrity correction
 
-The DA library lists arXiv 2609.01437 as "Auto-RecSys" and 2609.10922 as "HarnessDev"; the actual paper contents are swapped (2609.01437 is the HarnessDev benchmark, 2609.10922 is the Meta Auto-RecSys system). This file and the rule Source sections follow the actual content. Worth a `dai paper fix-title` on both records.
+An earlier revision of this file claimed the DA library had the arXiv 2609.01437 / 2609.10922 titles swapped. That claim was **wrong**: the pipeline titles were already correct (2609.01437 = HarnessDev, 2609.10922 = Auto-RecSys, matching arXiv exactly). The confusion arose from a misreading during cluster distillation, and this file has been corrected. The rule → paper attributions above were always correct.
+
+For the record, a `fix-title` was briefly applied to Auto-RecSys during the false-swap investigation (adding a plural "Systems") and was immediately reverted to the arXiv-exact title "Auto-RecSys: Harnessing Autonomous Research Agents for Industry-Scale Recommender System".
