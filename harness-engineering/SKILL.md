@@ -1,14 +1,15 @@
 ---
 name: harness-engineering
 description: >
-  Harness-engineering guidelines with 104 rules across 10 categories for shaping
+  Harness-engineering guidelines with 120 rules across 10 categories for shaping
   the environment around AI agents so they work reliably. Use when building,
   tuning, or reviewing an agent harness: context management, tool design,
   sandboxing and authorization, long-running execution, verification gates,
-  evals, telemetry, and operational autonomy. Covers context windows, KV-cache
-  layout, instruction files, sandbox boundaries, retry economics, eval design,
-  and harness structure. Runtime-agnostic (Claude Code, Codex, OpenHands,
-  custom runtimes).
+  evals, telemetry, operational autonomy, self-improving harness loops, agent
+  memory, and skill authoring. Covers context windows, KV-cache layout,
+  instruction files, sandbox boundaries, retry economics, eval design, harness
+  structure, and distilled 2026 agent research. Runtime-agnostic (Claude Code,
+  Codex, OpenHands, custom runtimes).
 license: CC0-1.0
 metadata:
   author: harness-engineering-skills
@@ -28,7 +29,7 @@ metadata:
 
 # Harness Engineering
 
-Guidelines for engineering the environment around AI agents — the harness — so agents work reliably on real tasks. 104 rules across 10 categories, each distilled from a named primary source (article, spec, or reference implementation) and runtime-agnostic: applies whether your harness is Claude Code, Codex, OpenHands, or custom.
+Guidelines for engineering the environment around AI agents — the harness — so agents work reliably on real tasks. 120 rules across 10 categories, each distilled from a named primary source (article, spec, reference implementation, or peer-reviewed paper) and runtime-agnostic: applies whether your harness is Claude Code, Codex, OpenHands, or custom.
 
 **The full rule index lives in [INDEX.md](INDEX.md).** Read this page to route to the right category and a handful of rules — do not load all rules at once.
 
@@ -36,16 +37,16 @@ Guidelines for engineering the environment around AI agents — the harness — 
 
 | Symptom / task | Start with | Then, if needed |
 |---|---|---|
-| Agent lacks project knowledge, drifts, forgets goals, context bloat | `ctx-` (21 rules) | `run-` for cross-session continuity |
-| Agent marks work done without really verifying it | `ver-` (5) | `eval-` to build the gate |
-| Long-running / multi-session work degrades or loses state | `run-` (13) | `struct-` for the loop architecture |
+| Agent lacks project knowledge, drifts, forgets goals, context bloat | `ctx-` (26 rules) | `run-` for cross-session continuity |
+| Agent marks work done without really verifying it | `ver-` (7) | `eval-` to build the gate |
+| Long-running / multi-session work degrades or loses state | `run-` (15) | `struct-` for the loop architecture |
 | Wrong tool called, tool results waste context, tools misused | `tool-` (8) | `ctx-` for response-size budgeting |
-| Agent too dangerous, needs sandboxing or permissions | `guard-` (9) | `ops-` for economic limits |
-| Building or fixing an eval suite | `eval-` (14) | `ver-` for in-run verification |
-| Harness architecture: loops, workers, worktrees, recovery | `struct-` (10) | `run-` for session boundaries |
+| Agent too dangerous, needs sandboxing or permissions | `guard-` (10) | `ops-` for economic limits |
+| Building or fixing an eval suite | `eval-` (16) | `ver-` for in-run verification |
+| Harness architecture: loops, workers, worktrees, recovery | `struct-` (12) | `run-` for session boundaries |
 | Can't see what the agent did; costs unknown | `obs-` (9) | `eval-` to turn traces into checks |
 | Retries, budgets, spending authority, fleet failures | `ops-` (8) | `guard-` for authorization |
-| Harness feels over-engineered; humans micromanaging artifacts | `prin-` (7) | `run-` (component attrition) |
+| Harness feels over-engineered; humans micromanaging artifacts | `prin-` (9) | `run-` (component attrition) |
 
 Category priorities: `ctx-` and `ver-` are CRITICAL; `run-`, `tool-`, `guard-`, `eval-` are HIGH; `struct-`, `obs-`, `ops-`, `prin-` are MEDIUM. Priority is about default attention, not task importance — for a spending agent, `ops-`/`guard-` outrank everything else.
 
@@ -66,7 +67,7 @@ Category priorities: `ctx-` and `ver-` are CRITICAL; `run-`, `tool-`, `guard-`, 
 4. **Evolve the harness**: as models improve, remove components that are no longer load-bearing ([run-harness-component-attrition-on-model-upgrade](rules/run-harness-component-attrition-on-model-upgrade.md)).
 
 ## Sources & Attribution
+This skill is an independent synthesis of publicly published engineering articles, specifications, open-source reference harnesses, and peer-reviewed research papers. It is not affiliated with or endorsed by any source author. Each rule file cites its source; the primary index is [awesome-harness-engineering](https://github.com/walkinglabs/awesome-harness-engineering). Full per-category rule listing: [INDEX.md](INDEX.md). Provenance for the research-paper layer: [PAPERS.md](PAPERS.md).
 
-This skill is an independent synthesis of publicly published engineering articles, specifications, and open-source reference harnesses. It is not affiliated with or endorsed by any source author. Each rule file cites its source; the primary index is [awesome-harness-engineering](https://github.com/walkinglabs/awesome-harness-engineering). Full per-category rule listing: [INDEX.md](INDEX.md).
 
 Licensed CC0-1.0. Referenced upstream materials remain under their own licenses.

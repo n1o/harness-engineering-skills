@@ -1,12 +1,17 @@
 # Harness Engineering — Rule Index
 
-Complete index of all 104 rules, grouped by category with one-line summaries.
+Complete index of all 120 rules, grouped by category with one-line summaries.
 This file is a lookup aid: scan it, then read the specific rule files.
 
 ## Quick Reference
 
 ### 1. Context & Working State (CRITICAL)
 
+- [`ctx-skill-compactness-over-completeness`](rules/ctx-skill-compactness-over-completeness.md) - Author skills compact and attach few per task: measured gains collapse as skill documentation grows comprehensive or skill count rises past 2–3 — more skill material can subtract performance, so never pad a skill into an exhaustive manual.
+- [`ctx-memory-substrate-routing`](rules/ctx-memory-substrate-routing.md) - Pick the memory substrate by task regime, not by fashion: no substrate wins everywhere, retrieval breadth has opposite optimal values in QA vs decision-making, and structural memory buys recall with large write/latency costs — so route or trade accordingly.
+- [`ctx-memory-reconstruct-not-replay`](rules/ctx-memory-reconstruct-not-replay.md) - Never replay retrieved memories verbatim into the prompt: insert an explicit critique-and-reconstruct step that compares each memory's source state against the current state, and give the agent a first-class reject option — semantic relevance does not equal action-level applicability.
+- [`ctx-memory-curation-scored-forgetting`](rules/ctx-memory-curation-scored-forgetting.md) - Give every persistent memory entry a cheap, deterministic importance score (recency, access frequency, structural centrality, age) and prune below a threshold on a fixed cadence — memory stores need an explicit forgetting policy, and the bookkeeping must not be done by generative LLM calls.
+- [`ctx-evolved-knowledge-gated-by-validation`](rules/ctx-evolved-knowledge-gated-by-validation.md) - When an agent accumulates a durable domain-knowledge layer (ontology, semantic layer, playbook), admit new entries only through a measured validation gate and serve it by active query — never free-form accumulation, and never blind injection of the whole layer into context.
 - [`ctx-break-uniformity-fewshot-ruts`](rules/ctx-break-uniformity-fewshot-ruts.md) - Contexts full of near-identical action-observation pairs few-shot the model into repeating the pattern even when it's wrong; introduce small structured variation (serialization templates, phrasing, ordering) in repetitive tasks.
 - [`ctx-compaction-recall-then-precision`](rules/ctx-compaction-recall-then-precision.md) - When compacting, first maximize recall (capture every relevant detail from real agent traces), then tighten precision (drop superfluous content); start with the lightest-touch lever — tool-result clearing.
 - [`ctx-condensation-threshold-cache-friendly`](rules/ctx-condensation-threshold-cache-friendly.md) - Trigger condensation only at a size threshold, summarize the old span (goals, progress made, remaining work, critical files, failing tests) while keeping recent turns verbatim — this keeps per-turn cost bounded and linear instead of quadratic while amortizing cache rebuilds.
@@ -31,6 +36,8 @@ This file is a lookup aid: scan it, then read the specific rule files.
 
 ### 2. Verification & Quality Gates (CRITICAL)
 
+- [`ver-skill-correctness-as-spec-consistency`](rules/ver-skill-correctness-as-spec-consistency.md) - Treat an agent skill as an executable specification, not documentation: the SKILL.md declares the expected behavior, the workflow/scripts encode the factual behavior, and correctness is behavioral consistency between the two — checked by specification reasoning plus sandbox reproduction, never by reading the prose.
+- [`ver-self-edit-non-regression-gate`](rules/ver-self-edit-non-regression-gate.md) - In an automated harness-improvement loop, accept a proposed harness edit only if it regresses on neither a held-in development split nor a held-out split and improves on at least one — and keep every rejected edit logged.
 - [`ver-harness-deltas-measured-by-evals`](rules/ver-harness-deltas-measured-by-evals.md) - Measure every harness change as an eval delta with the model held fixed — and use automated trace analysis as the outer improvement loop that proposes the changes.
 - [`ver-in-loop-internal-quality`](rules/ver-in-loop-internal-quality.md) - Compiler-passing, functionally-working agent output is not internal quality: agents suppress symptoms at call sites unless quality checks catch it inside the loop, not in after-the-fact review.
 - [`ver-layered-verification-stack`](rules/ver-layered-verification-stack.md) - Treat verification as a stack of layered verifiers that let coding agents fail fast and produce mergeable changes — trajectory-level critics, patch-level checks, and process guardrails composed together.
@@ -39,6 +46,8 @@ This file is a lookup aid: scan it, then read the specific rule files.
 
 ### 3. Long-Running Execution (HIGH)
 
+- [`run-harness-optimization-per-model`](rules/run-harness-optimization-per-model.md) - Key harness optimization to (model, task-domain) pairs: re-run the improvement loop for each new base model instead of transplanting harnesses, because failure modes are model-specific.
+- [`run-dead-end-ledger-scar-tissue`](rules/run-dead-end-ledger-scar-tissue.md) - Persist every failed harness configuration, rejected edit, and operational dead end as a searchable ledger consulted before each new proposal — the improvement loop must never re-propose what already failed.
 - [`run-context-reset-handoff-artifacts-across-windows`](rules/run-context-reset-handoff-artifacts-across-windows.md) - When work spans many context windows, bridge sessions with structured handoff artifacts (progress file + git history + feature states) rather than relying on compaction alone; use full context resets when the model exhibits "context anxiety."
 - [`run-entropy-garbage-collection-cadence`](rules/run-entropy-garbage-collection-cadence.md) - Agents replicate whatever patterns already exist in the repo, good or bad; run a recurring cleanup process — "garbage collection" — that encodes taste as mechanical rules and pays down drift continuously in small increments.
 - [`run-feature-list-expanded-spec-with-pass-state`](rules/run-feature-list-expanded-spec-with-pass-state.md) - Have the initializer expand the user's prompt into a comprehensive structured feature list, all initially marked failing, so later agents have a mechanical definition of "done" and cannot declare premature victory.
@@ -66,6 +75,7 @@ This file is a lookup aid: scan it, then read the specific rule files.
 
 ### 5. Guardrails & Safe Autonomy (HIGH)
 
+- [`guard-rotate-peer-verifiers-against-collusion`](rules/guard-rotate-peer-verifiers-against-collusion.md) - Never let the same agents repeatedly verify each other's work: rotate evaluator pairings, keep worker→verifier channels out of context, and monitor for verdict-relaxation onset — repeated peer verification converges to mutual instruction violation even when no agent was told to misbehave.
 - [`guard-audit-log-every-decision`](rules/guard-audit-log-every-decision.md) - Log every authorization decision and tool execution (tool, allow/deny, policy matched, context, parameters) as a first-class artifact.
 - [`guard-credentials-outside-the-sandbox`](rules/guard-credentials-outside-the-sandbox.md) - Never place real credentials inside the agent's sandbox; route privileged operations through a verifying proxy that holds the secrets.
 - [`guard-filesystem-and-network-isolation-together`](rules/guard-filesystem-and-network-isolation-together.md) - Effective sandboxing requires both filesystem isolation and network isolation; either one alone leaves a trivially exploitable gap.
@@ -78,6 +88,8 @@ This file is a lookup aid: scan it, then read the specific rule files.
 
 ### 6. Evaluation Design (HIGH)
 
+- [`eval-pin-harness-with-model`](rules/eval-pin-harness-with-model.md) - Pin the harness (identity, version, and configuration) as a declared experimental variable in every agent evaluation — harness choice moves pass rates by model-upgrade-scale amounts and token efficiency by up to 40x, so an unpinned harness makes any model comparison invalid.
+- [`eval-canary-injections-verify-human-oversight`](rules/eval-canary-injections-verify-human-oversight.md) - Continuously test that human oversight actually functions: inject known-defective artifacts into the human review stream at a measured rate and track catch rate; when catch rate decays, cut review volume and move load to deterministic gates — the presence of an overseer does not entail oversight.
 - [`eval-bespoke-assertions-per-case`](rules/eval-bespoke-assertions-per-case.md) - Deep agents break the one-evaluator-per-dataset assumption: each datapoint may need its own success criteria, asserting across trajectory, final message, and state.
 - [`eval-capability-vs-regression-suites`](rules/eval-capability-vs-regression-suites.md) - Run two kinds of suites: capability evals that start at a low pass rate (a hill to climb) and regression evals near 100% that guard against backsliding — and graduate saturated tasks between them.
 - [`eval-clean-environment-per-trial`](rules/eval-clean-environment-per-trial.md) - Each trial starts from a clean, isolated environment; shared state causes correlated failures, flaky results, and unfair advantages.
@@ -95,6 +107,8 @@ This file is a lookup aid: scan it, then read the specific rule files.
 
 ### 7. Harness Structure (MEDIUM)
 
+- [`struct-generative-ui-schema-bounded`](rules/struct-generative-ui-schema-bounded.md) - When an agent must surface state, results, or approvals to a human, have it emit a schema-validated declarative UI composition that a deterministic renderer instantiates from a vetted component inventory — the LLM plans, the renderer decides; never free-form generated UI code.
+- [`struct-adaptive-harness-per-task-retrieval`](rules/struct-adaptive-harness-per-task-retrieval.md) - For heterogeneous task mixes, retrieve a task-adapted harness configuration at runtime from a case-indexed experience bank instead of serving one static harness.
 - [`struct-append-only-trace-receipt`](rules/struct-append-only-trace-receipt.md) - Write every run's actions as an append-only trace that doubles as a human-readable receipt — the audit artifact and the run record are the same file.
 - [`struct-backpressure-verification-gates`](rules/struct-backpressure-verification-gates.md) - Wire verification into the loop as mechanical backpressure the agent must satisfy each iteration — run the tests for the unit just changed, use static analyzers for dynamic languages, and commit/tag only on green.
 - [`struct-bounded-single-task-loop`](rules/struct-bounded-single-task-loop.md) - Drive long-running autonomy with a bounded outer loop that hands the agent exactly one task per iteration in a fresh context window — not one mega-session with an unbounded mandate.
@@ -131,6 +145,8 @@ This file is a lookup aid: scan it, then read the specific rule files.
 
 ### 10. Operating Principles (MEDIUM)
 
+- [`prin-internalize-harness-into-model`](rules/prin-internalize-harness-into-model.md) - Once a harness mechanism is validated and stable, internalize it — distill into model weights or fold into shipped defaults — instead of letting runtime scaffolding accumulate.
+- [`prin-control-flow-in-code-not-model`](rules/prin-control-flow-in-code-not-model.md) - Put loops, branching, and sequencing in program code enforced by the runtime and invoke the LLM only at reasoning/generation points — never sample control flow from the model when the workflow's structure is known.
 - [`prin-agent-equals-model-plus-harness`](rules/prin-agent-equals-model-plus-harness.md) - Define the harness as everything that isn't the model — and design it by working backwards from the desired agent behavior to a concrete harness feature.
 - [`prin-compact-errors-bounded-retries`](rules/prin-compact-errors-bounded-retries.md) - Feed tool errors back into the context window so the agent can self-heal, but bound retries deterministically and restructure/remove error context when the agent spins.
 - [`prin-contact-humans-with-tool-calls`](rules/prin-contact-humans-with-tool-calls.md) - Model human interaction as structured tool calls (`request_human_input`, `request_approval`) with explicit metadata — not free-form chat — so approval, clarification, and multi-human coordination become durable, auditable parts of the control flow.
