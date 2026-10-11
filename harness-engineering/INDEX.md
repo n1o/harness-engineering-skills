@@ -1,6 +1,6 @@
 # Harness Engineering — Rule Index
 
-Complete index of all 120 rules, grouped by category with one-line summaries.
+Complete index of all 125 rules, grouped by category with one-line summaries.
 This file is a lookup aid: scan it, then read the specific rule files.
 
 ## Quick Reference
@@ -13,7 +13,9 @@ This file is a lookup aid: scan it, then read the specific rule files.
 - [`ctx-memory-curation-scored-forgetting`](rules/ctx-memory-curation-scored-forgetting.md) - Give every persistent memory entry a cheap, deterministic importance score (recency, access frequency, structural centrality, age) and prune below a threshold on a fixed cadence — memory stores need an explicit forgetting policy, and the bookkeeping must not be done by generative LLM calls.
 - [`ctx-evolved-knowledge-gated-by-validation`](rules/ctx-evolved-knowledge-gated-by-validation.md) - When an agent accumulates a durable domain-knowledge layer (ontology, semantic layer, playbook), admit new entries only through a measured validation gate and serve it by active query — never free-form accumulation, and never blind injection of the whole layer into context.
 - [`ctx-break-uniformity-fewshot-ruts`](rules/ctx-break-uniformity-fewshot-ruts.md) - Contexts full of near-identical action-observation pairs few-shot the model into repeating the pattern even when it's wrong; introduce small structured variation (serialization templates, phrasing, ordering) in repetitive tasks.
+- [`ctx-compression-degrade-not-summarize`](rules/ctx-compression-degrade-not-summarize.md) - When compressing agent history, prefer rule-based lossy primitives — tool-result clearing with placeholders — over LLM summarization of history: clearing preserves near-full-context accuracy at a fraction of the cost, while LLM summarization costs accuracy and adds latency.
 - [`ctx-compaction-recall-then-precision`](rules/ctx-compaction-recall-then-precision.md) - When compacting, first maximize recall (capture every relevant detail from real agent traces), then tighten precision (drop superfluous content); start with the lightest-touch lever — tool-result clearing.
+ [INDEX.md#ACD8]
 - [`ctx-condensation-threshold-cache-friendly`](rules/ctx-condensation-threshold-cache-friendly.md) - Trigger condensation only at a size threshold, summarize the old span (goals, progress made, remaining work, critical files, failing tests) while keeping recent turns verbatim — this keeps per-turn cost bounded and linear instead of quadratic while amortizing cache rebuilds.
 - [`ctx-context-load-ownership`](rules/ctx-context-load-ownership.md) - Be explicit about who decides when each context feature loads — LLM (lazy, non-deterministic), human (controlled, less automated), or agent software at deterministic lifecycle points — and match the trigger to how critical the load is.
 - [`ctx-context-occupancy-transparency`](rules/ctx-context-occupancy-transparency.md) - Instrument and expose what is taking up how much space in the context window — occupancy transparency is a required harness feature for navigating the size budget.
@@ -47,7 +49,11 @@ This file is a lookup aid: scan it, then read the specific rule files.
 ### 3. Long-Running Execution (HIGH)
 
 - [`run-harness-optimization-per-model`](rules/run-harness-optimization-per-model.md) - Key harness optimization to (model, task-domain) pairs: re-run the improvement loop for each new base model instead of transplanting harnesses, because failure modes are model-specific.
+- [`run-optimization-label-scarce-regime`](rules/run-optimization-label-scarce-regime.md) - When representative labeled validation data do not exist, do not stall harness optimization: rank past trajectories by an LLM-judged difficulty × diversity coreset and let the same model self-preference future edits from that experience — no ground-truth labels required.
+- [`run-do-not-stack-redundant-harness-components`](rules/run-do-not-stack-redundant-harness-components.md) - Harness component gains are not additive: when multiple components encode the same mitigation (e.g., several layers all pushing toward closure-style verification), stacking them spends the finite turn budget on redundant re-checks — evaluate components jointly, not one at a time in isolation.
 - [`run-dead-end-ledger-scar-tissue`](rules/run-dead-end-ledger-scar-tissue.md) - Persist every failed harness configuration, rejected edit, and operational dead end as a searchable ledger consulted before each new proposal — the improvement loop must never re-propose what already failed.
+ [INDEX.md#F6CF]
+ [INDEX.md#ACD8]
 - [`run-context-reset-handoff-artifacts-across-windows`](rules/run-context-reset-handoff-artifacts-across-windows.md) - When work spans many context windows, bridge sessions with structured handoff artifacts (progress file + git history + feature states) rather than relying on compaction alone; use full context resets when the model exhibits "context anxiety."
 - [`run-entropy-garbage-collection-cadence`](rules/run-entropy-garbage-collection-cadence.md) - Agents replicate whatever patterns already exist in the repo, good or bad; run a recurring cleanup process — "garbage collection" — that encodes taste as mechanical rules and pays down drift continuously in small increments.
 - [`run-feature-list-expanded-spec-with-pass-state`](rules/run-feature-list-expanded-spec-with-pass-state.md) - Have the initializer expand the user's prompt into a comprehensive structured feature list, all initially marked failing, so later agents have a mechanical definition of "done" and cannot declare premature victory.
@@ -84,7 +90,9 @@ This file is a lookup aid: scan it, then read the specific rule files.
 - [`guard-sandbox-beats-permission-prompts`](rules/guard-sandbox-beats-permission-prompts.md) - Replace per-action approval prompts with pre-defined sandbox boundaries the agent can work freely inside; escalate to a human only for boundary violations.
 - [`guard-scope-based-tool-allowlists`](rules/guard-scope-based-tool-allowlists.md) - Define per-agent-role scopes with explicit allowed/blocked tool lists; blocked tools must be undiscoverable, not merely uncallable.
 - [`guard-static-capability-scan-before-deploy`](rules/guard-static-capability-scan-before-deploy.md) - Run a static capability scan in CI before deployment to surface what the agent can actually touch — including capabilities the manifest never declared.
+- [`guard-evolved-state-lifecycle-safety`](rules/guard-evolved-state-lifecycle-safety.md) - Treat persistent evolved state — memories, skills, workflow rules, playbooks — as a safety-relevant substrate with a full lifecycle: tag provenance at write, constrain the authority it can carry, verify deletion, and quarantine on violation. Untrusted-content rules cover injection at read time; this covers what the agent itself persists.
 - [`guard-untrusted-content-as-data`](rules/guard-untrusted-content-as-data.md) - Treat every retrieved page, repository file, tool result, issue body, and persisted memory as untrusted input that can carry instructions — never as instructions to follow.
+ [INDEX.md#ACD8]
 
 ### 6. Evaluation Design (HIGH)
 
@@ -153,4 +161,5 @@ This file is a lookup aid: scan it, then read the specific rule files.
 - [`prin-feedforward-guides-feedback-sensors`](rules/prin-feedforward-guides-feedback-sensors.md) - Harness a coding agent with two complementary control types: guides (feedforward, steer before acting) and sensors (feedback, observe after acting and drive self-correction) — you need both.
 - [`prin-humans-on-the-loop-not-in-it`](rules/prin-humans-on-the-loop-not-in-it.md) - The human's highest-leverage position is building and improving the harness (the "how" loop), not inspecting every artifact the agents produce ("in the loop") nor abandoning oversight entirely ("out of the loop").
 - [`prin-simplest-solution-that-works`](rules/prin-simplest-solution-that-works.md) - Find the simplest solution possible and only increase complexity when it demonstrably improves outcomes — start with direct LLM API calls and composable patterns, not frameworks and autonomous agents.
+- [`prin-ship-converged-harness-patterns`](rules/prin-ship-converged-harness-patterns.md) - Prefer the design points that shipped harnesses converged on — hand-built loops, deterministic retrieval, skills — over adding a general-purpose agent framework or vector-embedding code retrieval; zero production coding agents ship either.
 - [`prin-small-focused-agents`](rules/prin-small-focused-agents.md) - Keep each agent small and focused — roughly 3–10, maybe 20 steps — because performance degrades as context grows; agents are one building block in a larger, mostly deterministic system.

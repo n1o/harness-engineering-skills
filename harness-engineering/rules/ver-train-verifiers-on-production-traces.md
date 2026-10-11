@@ -10,7 +10,7 @@
 
 - Validate rubrics by regressing rubric features against sparse outcomes — what's predictive differs between benchmarks and production, so the taxonomy must earn its keep.
 
-- Payoff at inference time: critic-guided Best-of-N selection lifted Best@8 on mixed-outcome SWE-bench Verified from 57.9% (random) to 73.8%; early stopping accepted at 1.35 attempts average vs 8.0, at +17.7 over random.
+- Learned rubrics also break the oracle bottleneck in skill evolution: SkillLift (arXiv 2609.15763) trains a dense rubric — M signed-weight binary criteria judged by a verifier LLM — to rank candidate skills Kendall-τ-aligned with sparse oracle rollouts, then evolves skills against the rubric at zero oracle cost; it beats direct empirical skill evolution +18.1pp over static (68.4% vs 50.3% on WildClawBench) across three backbone models, with only periodic K-oracle re-alignment rounds.
 
 - The critic score is a harness primitive: call it in your own loops for reranking, early stopping (accept above threshold), and iterative refinement.
 

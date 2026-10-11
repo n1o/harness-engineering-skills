@@ -9,7 +9,8 @@
 - Failure modes are scaffold properties, not model noise: one harness averaged 2.00–2.16 no-action turns per task vs 0.20–0.30 for another (a 10x ratio replicating across models); each harness showed a distinct failure fingerprint (REASON-dominated vs VERIFY+MAX_TURNS vs TIME/HANG with zero VERIFY) (2607.22585).
 - Terminal-Bench 2.0 previously documented the same confound at extreme scale: one model scored 52.1% under one harness and 57.8% under another while consuming 256.9M vs 3.9M tokens — a 65x token difference for a 5.7pp accuracy difference (cited by 2607.22585).
 - The effect replicates on a second benchmark: SkillsBench (arXiv 2602.12670, 18 model-harness configurations) found the same model swinging ~8pp across scaffolds (e.g., 60.8% under one CLI vs 52.8% under another) — same weights, different scaffold.
-- At n=50 one task equals 2pp, so most pairwise pass-rate differences fall inside bootstrap CIs — pinning the harness is what makes the differences you do report attributable; unpinned deltas of this size cannot be attributed to the model at all.
+- The confound extends beyond coding benchmarks and *grows* with task difficulty: a pre-registered controlled comparison of three scaffolds × five models on GAIA (arXiv 2606.08529) measured scaffold gaps up to 28pp within a single model (Opus L2 robust slice: 0.84 best vs 0.56 worst scaffold), and rejected the "frontier models are less scaffold-sensitive" hypothesis in direction — scaffold × model interaction significant in every slice (χ²(8) = 82.95 primary).
+ [eval-pin-harness-with-model.md#FC50]
 
 ## Scope
 
@@ -20,7 +21,7 @@
 
 ## Source
 
-The Scaffold Effect in Coding Agents (https://arxiv.org/abs/2607.22585), replicated by SkillsBench (https://arxiv.org/abs/2602.12670)
+The Scaffold Effect in Coding Agents (https://arxiv.org/abs/2607.22585), replicated by SkillsBench (https://arxiv.org/abs/2602.12670) and on general-assistant tasks by Scaffold Effects on GAIA (https://arxiv.org/abs/2606.08529)
 
 ## See Also
 

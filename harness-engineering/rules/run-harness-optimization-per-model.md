@@ -8,7 +8,8 @@
 - Each model needs different edits: MiniMax M2.5 needed early-artifact-creation rules and a loop breaker after 50 tool calls; Qwen3.5-35B-A3B needed dependency-prechecking and retry middleware; GLM-5 needed verification of persistent environment changes (e.g., PATH edits). One model's fix is another model's noise (Self-Harness, arXiv 2606.09498).
 - Transplants help but must be re-measured: a GPT-5.3-Codex-derived harness transfers to six other models on Terminal-Bench with mean +0.098, but the range is +0.038 to +0.233 — averages hide model-specific variance (MemoHarness, arXiv 2607.14159).
 - Mechanism activation degrades on unseen models: SoL-Pi's efficiency mechanisms keep working on a newer Opus model (44.7% token-traffic reduction retained) but at lower activation rates and intensities, which the authors attribute to overfitting the search backend (SoL-Pi, arXiv 2609.20519).
-- The per-model harness is a first-class performance lever: Self-Harness lifted Qwen3.5-35B-A3B on SWE-bench Verified from 19.5% to 41.5% (+113% relative) with zero weight changes (Self-Harness, arXiv 2606.09498).
+- And the benefit side is also model-specific, separate from who writes the edits: across seven models and three benchmarks, evolver (harness-updating) capability varies little — best-to-worst spread ≤3.1pp — while harness-benefit is non-monotonic in base pass rate (Qwen3-235B gains 19.3pp on SWE-bench Verified where Opus 4.6 gains 2.6; Haiku 4.5 gains 15.1pp on SkillsBench) — so even a fixed harness-improvement loop has model-dependent payoff, and the pairing must be measured, not assumed (Harness Updating Is Not Harness Benefit, arXiv 2605.30621).
+ [run-harness-optimization-per-model.md#75A3]
 
 ## Scope
 
@@ -18,7 +19,7 @@
 
 ## Source
 
-Self-Harness (https://arxiv.org/abs/2606.09498), HarnessDev (https://arxiv.org/abs/2609.01437), MemoHarness (https://arxiv.org/abs/2607.14159), SoL-Pi (https://arxiv.org/abs/2609.20519)
+Self-Harness (https://arxiv.org/abs/2606.09498), HarnessDev (https://arxiv.org/abs/2609.01437), MemoHarness (https://arxiv.org/abs/2607.14159), SoL-Pi (https://arxiv.org/abs/2609.20519), Harness Updating Is Not Harness Benefit (https://arxiv.org/abs/2605.30621)
 
 ## See Also
 

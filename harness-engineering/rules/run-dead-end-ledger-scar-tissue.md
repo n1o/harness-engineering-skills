@@ -8,7 +8,7 @@
 - Dead-end records eliminated whole error classes, not just instances: after one recorded GPU-hardware failure pattern, that failure class disappeared from all subsequent job submissions (Auto-RecSys, arXiv 2609.10922).
 - MemoHarness's dual-layer bank stores per-case entries (config, trajectory, reward, token cost, diagnosis) plus cross-case "global patterns" distilled every 5 new entries or 3 consecutive failures; the controller retrieves bounded slices of both before proposing the next harness (MemoHarness, arXiv 2607.14159).
 - Failures are retrieval targets, not just successes: MemoHarness's test-time adaptation conditions on the K nearest successful AND failed cases; Self-Harness logs every rejected edit so the next iteration's proposer sees what was already tried (MemoHarness, arXiv 2607.14159; Self-Harness, arXiv 2606.09498).
-- Discarded attempts remain available evidence: the Darwin Gödel Machine keeps functional-but-worse agents in its archive and biases selection toward underexplored ones — nothing learned is thrown away (DGM, arXiv 2505.22954).
+- Failure patterns should be normalized into reusable weakness classes, not stored as raw incident lists: ActiveSaddler (arXiv 2610.00906) groups each new failure into named "arms" (reusable harness weaknesses with supporting scenarios and evidence) and directs the optimization curriculum at unresolved arms — a fixed scenario batch keeps spending rollouts on repaired weaknesses while newly revealed ones go unaddressed.
 
 ## Scope
 

@@ -9,7 +9,8 @@
 - Greedy acceptance loses to keeping alternatives: in the Darwin Gödel Machine ablation, always selecting the best-performing parent reaches 39.7% on SWE-bench versus 50.0% for archive-based selection with a novelty bonus, and removing open-ended exploration drops it to 23.0% (DGM, arXiv 2505.22954).
 - Minimality matters as much as the gate: Self-Harness constrains the proposer to minimal edits (a single instruction or tool) targeting one clustered failure signature, preserving unrelated harness behaviors — so regressions stay attributable and reversible (Self-Harness, arXiv 2606.09498).
 - The measured trade-off: Self-Harness itself notes the non-regression rule rejects beneficial trade-off edits (one split up, other down); accept that conservatism as the price of never shipping a regression from an unattended loop (Self-Harness, arXiv 2606.09498).
-- Automated loops with validation beat manual tuning at scale: AutoSaddler's offline mini-batch loop reaches 62.0±1.2 on GAIA2 (vs 53.0±1.5 default) and 50.0±0.0 on Terminal-Bench 2.0 (vs expert-tuned Terminus KIRA 47.5±2.5) — the acceptance criterion, not the search machinery, is the load-bearing part (AutoSaddler, arXiv 2608.23041).
+- The gate — not the rewrite operator — is what bounds the downside: RSEA (arXiv 2606.28374) shows selecting on the evolve set with no held-out split overfits sharply (100% in-sample selection, 66.7% test — a 33-point gap, vs 67.3% for the held-out variant), and no-gate methods transfer catastrophically (Dynamic Cheatsheet: WebShop 0.136 vs ReAct's 0.429); across four benchmarks and six baselines no evolved artifact universally wins, but the strict keep-better gate is the only variant that never regresses anywhere.
+ [ver-self-edit-non-regression-gate.md#9BA9]
 
 ## Scope
 
@@ -21,7 +22,7 @@
 
 ## Source
 
-Self-Harness: Harnesses That Improve Themselves (https://arxiv.org/abs/2606.09498), with evidence from Evo-Bench (https://arxiv.org/abs/2608.09096), Darwin Godel Machine (https://arxiv.org/abs/2505.22954), AutoSaddler (https://arxiv.org/abs/2608.23041)
+Self-Harness: Harnesses That Improve Themselves (https://arxiv.org/abs/2606.09498), with evidence from Evo-Bench (https://arxiv.org/abs/2608.09096), Darwin Godel Machine (https://arxiv.org/abs/2505.22954), AutoSaddler (https://arxiv.org/abs/2608.23041), RSEA (https://arxiv.org/abs/2606.28374)
 
 ## See Also
 

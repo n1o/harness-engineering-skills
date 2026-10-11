@@ -10,11 +10,11 @@
 
 - With frontier models, 0% pass@100 is most often a broken task, not an incapable agent.
 
-- Create a known-good reference solution per task to prove solvability and verify grader configuration.
+- And validate tasks by *repairing* them against a solver, not just by authoring review: AutoGym (arXiv 2609.22592) found iterative task repair shifts a synthetic suite from 57.0% hard to 39.0% hard (280 of 350 retained) — nearly a fifth of apparent task difficulty was defects in the task, not capability being measured; single-pass synthesis difficulty is largely cosmetic, with models of comparable capability solving convoluted phrasings anyway.
 
 - Real failures from grading bugs: Opus 4.5 scored 42% on CORE-Bench until rigid grading (penalizing "96.12" vs "96.124991…"), ambiguous specs, and irreproducible stochastic tasks were fixed → 95%. METR found misconfigured tasks where instructions said to optimize *to* a threshold but grading required *exceeding* it, rewarding models that ignored the stated goal.
 
-- Make graders resistant to bypass: passing must genuinely require solving the problem, not exploiting loopholes.
+- Write the verification criteria before materializing the task environment (blueprint-first): solvability and verifiability become design constraints rather than post-hoc LLM-judged afterthoughts — the source of the position/verbosity bias that makes post-hoc LLM adjudication unreliable (AutoGym, arXiv 2609.22592).
 
 ## Scope
 

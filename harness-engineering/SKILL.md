@@ -1,7 +1,7 @@
 ---
 name: harness-engineering
 description: >
-  Harness-engineering guidelines with 120 rules across 10 categories for shaping
+  Harness-engineering guidelines with 125 rules across 10 categories for shaping
   the environment around AI agents so they work reliably. Use when building,
   tuning, or reviewing an agent harness: context management, tool design,
   sandboxing and authorization, long-running execution, verification gates,
@@ -29,7 +29,7 @@ metadata:
 
 # Harness Engineering
 
-Guidelines for engineering the environment around AI agents — the harness — so agents work reliably on real tasks. 120 rules across 10 categories, each distilled from a named primary source (article, spec, reference implementation, or peer-reviewed paper) and runtime-agnostic: applies whether your harness is Claude Code, Codex, OpenHands, or custom.
+Guidelines for engineering the environment around AI agents — the harness — so agents work reliably on real tasks. 125 rules across 10 categories, each distilled from a named primary source (article, spec, reference implementation, or peer-reviewed paper) and runtime-agnostic: applies whether your harness is Claude Code, Codex, OpenHands, or custom.
 
 **The full rule index lives in [INDEX.md](INDEX.md).** Read this page to route to the right category and a handful of rules — do not load all rules at once.
 
@@ -37,16 +37,19 @@ Guidelines for engineering the environment around AI agents — the harness — 
 
 | Symptom / task | Start with | Then, if needed |
 |---|---|---|
-| Agent lacks project knowledge, drifts, forgets goals, context bloat | `ctx-` (26 rules) | `run-` for cross-session continuity |
+| Agent lacks project knowledge, drifts, forgets goals, context bloat | `ctx-` (27 rules) | `run-` for cross-session continuity |
+ [SKILL.md#034E]
 | Agent marks work done without really verifying it | `ver-` (7) | `eval-` to build the gate |
-| Long-running / multi-session work degrades or loses state | `run-` (15) | `struct-` for the loop architecture |
+| Long-running / multi-session work degrades or loses state | `run-` (17) | `struct-` for the loop architecture |
+ [SKILL.md#034E]
 | Wrong tool called, tool results waste context, tools misused | `tool-` (8) | `ctx-` for response-size budgeting |
-| Agent too dangerous, needs sandboxing or permissions | `guard-` (10) | `ops-` for economic limits |
+| Agent too dangerous, needs sandboxing or permissions | `guard-` (11) | `ops-` for economic limits |
+ [SKILL.md#034E]
 | Building or fixing an eval suite | `eval-` (16) | `ver-` for in-run verification |
 | Harness architecture: loops, workers, worktrees, recovery | `struct-` (12) | `run-` for session boundaries |
 | Can't see what the agent did; costs unknown | `obs-` (9) | `eval-` to turn traces into checks |
 | Retries, budgets, spending authority, fleet failures | `ops-` (8) | `guard-` for authorization |
-| Harness feels over-engineered; humans micromanaging artifacts | `prin-` (9) | `run-` (component attrition) |
+| Harness feels over-engineered; humans micromanaging artifacts | `prin-` (10) | `run-` (component attrition) |
 
 Category priorities: `ctx-` and `ver-` are CRITICAL; `run-`, `tool-`, `guard-`, `eval-` are HIGH; `struct-`, `obs-`, `ops-`, `prin-` are MEDIUM. Priority is about default attention, not task importance — for a spending agent, `ops-`/`guard-` outrank everything else.
 

@@ -12,7 +12,7 @@
 
 - Multi-turn evals simulate user conversations but must be kept on rails: add conditional checks after each turn — if output is expected, continue to the next turn; if not, fail early — rather than naively hardcoding a full input sequence that breaks when the agent deviates.
 
-- To test a later turn in isolation, construct a test starting from that point with appropriate initial state.
+- Self-improving agents need a fourth measurement axis — learning through experience, distinct from endpoint capability: Agent Plasticity (arXiv 2610.08902) measures performance across update checkpoints on held-out in-distribution and OOD episodes, separating "began strong" from "learned substantially" (one model rose from ~0% to 36.9% yet finished below rivals; another improved 37.5%→73.3%), and reports cost-normalized saturation plasticity (percentage points of gain per $1,000 of learning cost) — an endpoint score cannot see any of this.
 
 ## Scope
 
