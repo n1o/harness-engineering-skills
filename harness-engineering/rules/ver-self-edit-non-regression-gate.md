@@ -10,7 +10,6 @@
 - Minimality matters as much as the gate: Self-Harness constrains the proposer to minimal edits (a single instruction or tool) targeting one clustered failure signature, preserving unrelated harness behaviors — so regressions stay attributable and reversible (Self-Harness, arXiv 2606.09498).
 - The measured trade-off: Self-Harness itself notes the non-regression rule rejects beneficial trade-off edits (one split up, other down); accept that conservatism as the price of never shipping a regression from an unattended loop (Self-Harness, arXiv 2606.09498).
 - The gate — not the rewrite operator — is what bounds the downside: RSEA (arXiv 2606.28374) shows selecting on the evolve set with no held-out split overfits sharply (100% in-sample selection, 66.7% test — a 33-point gap, vs 67.3% for the held-out variant), and no-gate methods transfer catastrophically (Dynamic Cheatsheet: WebShop 0.136 vs ReAct's 0.429); across four benchmarks and six baselines no evolved artifact universally wins, but the strict keep-better gate is the only variant that never regresses anywhere.
- [ver-self-edit-non-regression-gate.md#9BA9]
 
 ## Scope
 

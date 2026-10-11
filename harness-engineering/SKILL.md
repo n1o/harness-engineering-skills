@@ -38,13 +38,10 @@ Guidelines for engineering the environment around AI agents — the harness — 
 | Symptom / task | Start with | Then, if needed |
 |---|---|---|
 | Agent lacks project knowledge, drifts, forgets goals, context bloat | `ctx-` (27 rules) | `run-` for cross-session continuity |
- [SKILL.md#034E]
 | Agent marks work done without really verifying it | `ver-` (7) | `eval-` to build the gate |
 | Long-running / multi-session work degrades or loses state | `run-` (17) | `struct-` for the loop architecture |
- [SKILL.md#034E]
 | Wrong tool called, tool results waste context, tools misused | `tool-` (8) | `ctx-` for response-size budgeting |
 | Agent too dangerous, needs sandboxing or permissions | `guard-` (11) | `ops-` for economic limits |
- [SKILL.md#034E]
 | Building or fixing an eval suite | `eval-` (16) | `ver-` for in-run verification |
 | Harness architecture: loops, workers, worktrees, recovery | `struct-` (12) | `run-` for session boundaries |
 | Can't see what the agent did; costs unknown | `obs-` (9) | `eval-` to turn traces into checks |

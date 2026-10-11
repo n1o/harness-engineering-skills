@@ -23,13 +23,10 @@ harness-engineering/
 | Priority | Category | Prefix | Rules | What it covers |
 |---|---|---|---:|---|
 | CRITICAL | Context & Working State | `ctx-` | 27 | Context budget, KV-cache layout, compaction, instruction files, filesystem memory, agent memory substrates |
- [README.md#7A24]
 | CRITICAL | Verification & Quality Gates | `ver-` | 7 | Self-verification, in-loop quality, harness-change eval deltas, self-edit gates |
 | HIGH | Long-Running Execution | `run-` | 17 | Initializer agents, handoff artifacts, feature lists, session resets, dead-end ledgers |
- [README.md#7A24]
 | HIGH | Tool Design | `tool-` | 8 | Tool naming, descriptions, response shaping, progressive discovery |
 | HIGH | Guardrails & Safe Autonomy | `guard-` | 11 | Sandboxing, authorization hooks, untrusted content, allowlists, audit, collusion rotation |
- [README.md#7A24]
 | HIGH | Evaluation Design | `eval-` | 16 | Baselines, negative controls, graders, task quality, pass@k vs pass^k, harness pinning, oversight canaries |
 | MEDIUM | Harness Structure | `struct-` | 12 | Bounded loops, externalized state, default-fail evaluators, worktrees, adaptive harness retrieval, bounded generative UI |
 | MEDIUM | Observability & Telemetry | `obs-` | 9 | OTel GenAI conventions, token metrics, cost honesty, trace hierarchies |
@@ -37,7 +34,6 @@ harness-engineering/
 | MEDIUM | Operating Principles | `prin-` | 10 | Harness-first thinking, humans on the loop, smallest-workable agents, control flow in code, internalization |
 
 Twenty-one rules are distilled from 2026 peer-reviewed agent research (self-evolving harnesses, agent memory, skills benchmarks, multi-agent collusion, harness source-code study, evolved-state safety) via their Dissecting AI lecture summaries — see [harness-engineering/PAPERS.md](harness-engineering/PAPERS.md) for the paper→rule provenance map. The papers:
- [README.md#C257]
 
 ### Research papers cited
 
@@ -56,7 +52,6 @@ Twenty-one rules are distilled from 2026 peer-reviewed agent research (self-evol
 - *Evolving Agents in the Dark: Retrospective Harness Optimization via Self-Preference (RHO).* arXiv:2606.05922. https://arxiv.org/abs/2606.05922 → [run-optimization-label-scarce-regime](harness-engineering/rules/run-optimization-label-scarce-regime.md)
 - *Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents.* arXiv:2605.30621. https://arxiv.org/abs/2605.30621 → [run-harness-optimization-per-model](harness-engineering/rules/run-harness-optimization-per-model.md), [guard-evolved-state-lifecycle-safety](harness-engineering/rules/guard-evolved-state-lifecycle-safety.md)
 - *Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses.* arXiv:2604.25850. https://arxiv.org/abs/2604.25850 → [run-do-not-stack-redundant-harness-components](harness-engineering/rules/run-do-not-stack-redundant-harness-components.md)
- [README.md#C257]
 
 **Agent memory**
 
@@ -73,7 +68,6 @@ Twenty-one rules are distilled from 2026 peer-reviewed agent research (self-evol
 - *SkillSpec: Intent-Masked Specification Reasoning for Agent Skill Correctness.* arXiv:2609.06052. https://arxiv.org/abs/2609.06052 → [ver-skill-correctness-as-spec-consistency](harness-engineering/rules/ver-skill-correctness-as-spec-consistency.md)
 - *Scaffold Effects on GAIA: A Controlled Comparison.* arXiv:2606.08529. https://arxiv.org/abs/2606.08529 → [eval-pin-harness-with-model](harness-engineering/rules/eval-pin-harness-with-model.md)
 - *Harness Engineering: Anatomy, Architecture, and Evolution of Coding Agents — A Source-Code Study of Eleven Systems.* arXiv:2609.00006. https://arxiv.org/abs/2609.00006 → [prin-ship-converged-harness-patterns](harness-engineering/rules/prin-ship-converged-harness-patterns.md)
- [README.md#C257]
 
 **Multi-agent interaction, oversight, and human-facing surfaces**
 
@@ -89,7 +83,6 @@ Twenty-one rules are distilled from 2026 peer-reviewed agent research (self-evol
 **Safety of evolved state**
 
 - *Safety in Self-Evolving Agents: A Survey.* arXiv:2610.00093. https://arxiv.org/abs/2610.00093 → [guard-evolved-state-lifecycle-safety](harness-engineering/rules/guard-evolved-state-lifecycle-safety.md)
- [README.md#E3A7]
 
 ## How an agent uses it
 
